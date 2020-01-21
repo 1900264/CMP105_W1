@@ -5,9 +5,15 @@ Level::Level(sf::RenderWindow* hwnd)
 	window = hwnd;
 
 	// initialise game objects
-	rect.setSize(sf::Vector2f(50, 5));
+	rect.setSize(sf::Vector2f(50, 50));
 	rect.setPosition(100, 100);
 	rect.setFillColor(sf::Color::Red);
+
+	circle.setRadius(50);
+	circle.setPosition(575, 300);
+	circle.setFillColor(sf::Color::Blue);
+	circle.setOutlineColor(sf::Color::Red);
+	circle.setOutlineThickness(2.f);
 }
 
 Level::~Level()
@@ -30,13 +36,15 @@ void Level::update()
 void Level::render()
 {
 	beginDraw();
+	window->draw(rect);
+	window->draw(circle);
 
 	endDraw();
 }
 
 void Level::beginDraw()
 {
-	window->clear(sf::Color(100, 149, 237));
+	window->clear(sf::Color(0, 0, 0));
 }
 
 // Ends rendering to the back buffer, and swaps buffer to the screen.
