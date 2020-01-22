@@ -1,20 +1,17 @@
 #include "Level.h"
+#include <Windows.h>
 
 Level::Level(sf::RenderWindow* hwnd)
 {
+
 	window = hwnd;
-
 	// initialise game objects
-	rect.setSize(sf::Vector2f(50, 50));
-	rect.setPosition(100, 100);
-	rect.setFillColor(sf::Color::Red);
+	
+	
 
-	circle.setRadius(50);
-	circle.setPosition(575, 300);
-	circle.setFillColor(sf::Color::Blue);
-	circle.setOutlineColor(sf::Color::Red);
-	circle.setOutlineThickness(2.f);
+	
 }
+
 
 Level::~Level()
 {
@@ -30,6 +27,22 @@ void Level::handleInput()
 void Level::update()
 {
 	
+	//Render text 
+	if (!font.loadFromFile("font/arial.ttf")) {
+		std::cout << "Error loading font\n";
+	}
+	text.setFont(font);
+	text.setString("Hello world");
+	text.setCharacterSize(24);
+	text.setFillColor(sf::Color::Red);
+
+	rect.setSize(sf::Vector2f(300, 300));
+	rect.setPosition(100, 100);
+	rect.setFillColor(sf::Color::Green);
+	
+
+
+
 }
 
 // Render level
@@ -37,10 +50,11 @@ void Level::render()
 {
 	beginDraw();
 	window->draw(rect);
-	window->draw(circle);
+	window->draw(text);
 
 	endDraw();
 }
+
 
 void Level::beginDraw()
 {
